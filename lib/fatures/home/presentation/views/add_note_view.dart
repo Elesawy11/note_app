@@ -71,6 +71,7 @@ class AddNoteView extends StatelessWidget {
                             cubit: cubit,
                           ),
                           CustomTextButton(
+                            text: 'Add Note',
                             onPressed: () {
                               if (cubit.formKey.currentState!.validate()) {
                                 cubit.formKey.currentState!.save();

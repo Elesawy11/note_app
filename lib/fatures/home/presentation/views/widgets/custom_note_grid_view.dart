@@ -32,9 +32,7 @@ class CustomNoteGridView extends StatelessWidget {
                 itemCount: state.notesList.length,
                 itemBuilder: (context, index) {
                   return NoteItem(
-                    color: state.notesList[index].color ?? Colors.green.value,
-                    upText: state.notesList[index].title,
-                    downText: state.notesList[index].content ?? "",
+                    note: state.notesList[index],
                   );
                 },
               )

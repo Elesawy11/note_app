@@ -4,9 +4,12 @@ import 'package:note_app/core/utils/font_styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
-    super.key, this.onPressed,
+    super.key,
+    this.onPressed,
+    required this.text,
   });
-final void Function()? onPressed;
+  final void Function()? onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -19,7 +22,7 @@ final void Function()? onPressed;
           ),
           child: Center(
             child: Text(
-              'Add Note',
+              text,
               style: FontStyles.font20Bold.copyWith(
                 color: Colors.black,
               ),
