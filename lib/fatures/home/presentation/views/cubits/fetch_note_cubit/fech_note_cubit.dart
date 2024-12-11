@@ -10,10 +10,13 @@ class FetchNoteCubit extends Cubit<FechNoteState> {
   List<NoteModel> notesList = [];
   CollectionReference<Map<String, dynamic>> firestore =
       FirebaseFirestore.instance.collection('notes');
-  void fetchNotes() {
+  void fetchNotes({Object? isEqualTo}) {
     emit(FechNoteLoading());
     try {
-      firestore.snapshots().listen((event) {
+      firestore
+          .where('title', isEqualTo: isEqualTo)
+          .snapshots()
+          .listen((event) {
         notesList.clear();
         notesList =
             event.docs.map((doc) => NoteModel.fromJson(doc.data())).toList();

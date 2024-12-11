@@ -7,7 +7,6 @@ import 'package:note_app/core/utils/spacere.dart';
 import 'package:note_app/fatures/home/data/models/note_model.dart';
 import 'package:note_app/fatures/home/presentation/views/cubits/update_note_cubit/update_note_cubit.dart';
 import 'package:note_app/fatures/home/presentation/views/home_view.dart';
-import 'package:note_app/fatures/home/presentation/views/widgets/color_list_view.dart';
 import 'package:note_app/fatures/home/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:note_app/fatures/home/presentation/views/widgets/edit_color_list_view.dart';
 

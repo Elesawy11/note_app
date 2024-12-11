@@ -13,8 +13,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt.get<FetchNoteCubit>();
     return BlocProvider(
-      create: (context) => getIt.get<FetchNoteCubit>()..fetchNotes(),
+      create: (context) => cubit..fetchNotes(),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.of(context).push(
@@ -37,7 +38,8 @@ class HomeView extends StatelessWidget {
                     Icons.search_outlined,
                   ),
                   hintText: 'Search note',
-                  onChanged: (p0) {},
+                  onChanged: (value) =>
+                      cubit.fetchNotes(isEqualTo: value.isEmpty ? null : value),
                 ),
                 verticalSpace(24),
 
