@@ -12,6 +12,10 @@ abstract class FontStyles {
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
   );
+  static TextStyle font20Bold = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.bold,
+  );
   static TextStyle font18Regular = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.regular,

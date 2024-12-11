@@ -13,13 +13,16 @@ class NoteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScreenUtilInit(
-      designSize: Size(360, 690),
+    return  ScreenUtilInit(
+      designSize:const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xffCFCCD4),
+        ),
         debugShowCheckedModeBanner: false,
-        home: HomeView(),
+        home:const HomeView(),
       ),
     );
   }

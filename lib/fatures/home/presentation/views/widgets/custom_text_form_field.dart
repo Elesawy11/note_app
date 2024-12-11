@@ -2,30 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/core/utils/font_styles.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key, this.onChanged,
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    super.key,
+    this.onChanged,
+    this.validator,
+    this.expands,
+    required this.hintText,
+    this.maxLines,
+    this.prefixIcon, this.suffixIcon,
   });
-final void Function(String)? onChanged;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final bool? expands;
+  final String hintText;
+  final int? maxLines;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      textAlignVertical: TextAlignVertical.top,
+      maxLines: null,
+      // minLines: null,
+      expands: expands ?? false,
       onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: 'Search notes',
+        hintText: hintText,
         hintStyle: FontStyles.font14Regular,
-        prefixIcon: const Icon(
-          Icons.search_outlined,
-        ),
-        suffixIcon: const Icon(Icons.person_outline),
+        prefixIcon: prefixIcon,
+        suffixIcon:suffixIcon ,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         focusedBorder: outLineBorder(),
         enabledBorder: outLineBorder(),
         errorBorder: outLineBorder(),
         focusedErrorBorder: outLineBorder(),
       ),
+      validator: validator,
     );
   }
 

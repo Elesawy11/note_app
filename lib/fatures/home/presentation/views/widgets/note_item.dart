@@ -32,7 +32,9 @@ class NoteItem extends StatelessWidget {
             ),
             subtitle: Text(
               downText,
-              style: FontStyles.font18Regular,
+              style: FontStyles.font18Regular.copyWith(
+                color: Colors.black,
+              ),
             ),
           ),
         ],
