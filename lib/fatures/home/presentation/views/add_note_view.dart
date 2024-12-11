@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/core/DI/service_locator.dart';
-import 'package:note_app/core/utils/font_styles.dart';
+import 'package:note_app/core/helpers/custom_snack_bar.dart';
 import 'package:note_app/core/utils/spacere.dart';
-import 'package:note_app/fatures/home/presentation/views/cubits/cubit/add_note_cubit.dart';
+import 'package:note_app/fatures/home/presentation/views/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/fatures/home/presentation/views/home_view.dart';
+import 'package:note_app/fatures/home/presentation/views/widgets/color_list_view.dart';
 import 'package:note_app/fatures/home/presentation/views/widgets/custom_text_form_field.dart';
 
 import 'widgets/custom_text_button.dart';
@@ -35,11 +36,7 @@ class AddNoteView extends StatelessWidget {
                   ),
                 );
               } else if (state is AddNoteFailure) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.errMessage),
-                  ),
-                );
+                customSnackBar(context, state.errMessage);
               }
             },
             builder: (context, state) {
@@ -47,26 +44,43 @@ class AddNoteView extends StatelessWidget {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : Column(
-                      children: [
-                        CustomTextFormField(
-                          controller: cubit.titleController,
-                          hintText: 'Title',
-                          onChanged: (p0) {},
-                        ),
-                        verticalSpace(24),
-                        Expanded(
-                          child: CustomTextFormField(
-                            controller: cubit.contentController,
-                            hintText: 'content',
-                            onChanged: (p0) {},
-                            expands: true,
+                  : Form(
+                      key: cubit.formKey,
+                      child: Column(
+                        children: [
+                          CustomTextFormField(
+                            controller: cubit.titleController,
+                            hintText: 'Title',
+                            validator: (value) {
+                              if (value?.isEmpty ?? true) {
+                                return 'Failed is required';
+                              } else {
+                                return null;
+                              }
+                            },
                           ),
-                        ),
-                        CustomTextButton(
-                          onPressed: () => cubit.addNote(),
-                        )
-                      ],
+                          verticalSpace(24),
+                          Expanded(
+                            child: CustomTextFormField(
+                              controller: cubit.contentController,
+                              hintText: 'content',
+                              expands: true,
+                            ),
+                          ),
+                          ColorListView(
+                            cubit: cubit,
+                          ),
+                          CustomTextButton(
+                            onPressed: () {
+                              if (cubit.formKey.currentState!.validate()) {
+                                cubit.formKey.currentState!.save();
+
+                                cubit.addNote();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
                     );
             },
           ),

@@ -8,15 +8,17 @@ class NoteItem extends StatelessWidget {
     super.key,
     required this.upText,
     required this.downText,
+    required this.color,
   });
   final String upText, downText;
+  final int color;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         // color: Color(noteModel.color),
-        color: Colors.green,
+        color: Color(color),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

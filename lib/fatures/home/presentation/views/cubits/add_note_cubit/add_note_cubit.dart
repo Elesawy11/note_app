@@ -11,11 +11,14 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   CollectionReference notes = FirebaseFirestore.instance.collection('notes');
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey();
+  int color = Colors.green.value;
   Future<void> addNote() async {
     emit(AddNoteLoading());
     try {
       await notes
           .add(NoteModel(
+            color: color,
             title: titleController.text,
             content: contentController.text,
           ).toJson())

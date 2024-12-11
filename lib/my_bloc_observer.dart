@@ -10,13 +10,13 @@ class MyBlocObserver extends BlocObserver {
 
   @override
   void onCreate(BlocBase bloc) {
-    debugPrint(bloc.toString());
+    debugPrint('create ${bloc.toString()}');
     super.onCreate(bloc);
   }
 
   @override
   void onClose(BlocBase bloc) {
-    debugPrint(bloc.toString());
+    debugPrint('create ${bloc.toString()}');
     super.onClose(bloc);
   }
 

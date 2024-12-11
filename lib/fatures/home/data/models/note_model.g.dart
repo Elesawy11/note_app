@@ -8,10 +8,12 @@ part of 'note_model.dart';
 
 NoteModel _$NoteModelFromJson(Map<String, dynamic> json) => NoteModel(
       title: json['title'] as String,
-      content: json['content'] as String,
+      content: json['content'] as String?,
+      color: (json['color'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$NoteModelToJson(NoteModel instance) => <String, dynamic>{
       'title': instance.title,
       'content': instance.content,
+      'color': instance.color,
     };
