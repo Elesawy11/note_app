@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:note_app/fatures/home/data/models/note_model.dart';
-
 part 'add_note_state.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
@@ -18,11 +17,12 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     try {
       await notes
           .add(NoteModel(
+            id: '0',
             color: color,
             title: titleController.text,
             content: contentController.text,
           ).toJson())
-          .then((value) => print(value))
+          .then((value) => notes.doc(value.id).update({'id': value.id}))
           .catchError((error) => print("Failed to add user: $error"));
       emit(AddNoteSuccess());
     } catch (e) {

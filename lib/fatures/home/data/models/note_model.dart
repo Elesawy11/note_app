@@ -7,8 +7,9 @@ class NoteModel {
   final String title;
   final String? content;
   final int? color;
+  final String id;
 
-  NoteModel( {required this.title,  this.content, this.color});
+  NoteModel({required this.title, this.content, this.color, required this.id});
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>
       _$NoteModelFromJson(json);
