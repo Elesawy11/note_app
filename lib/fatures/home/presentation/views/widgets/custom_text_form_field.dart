@@ -10,7 +10,7 @@ class CustomTextFormField extends StatelessWidget {
     this.expands,
     required this.hintText,
     this.maxLines,
-    this.prefixIcon, this.suffixIcon,
+    this.prefixIcon, this.suffixIcon, this.controller,
   });
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -19,9 +19,11 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLines;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller:controller ,
       textAlignVertical: TextAlignVertical.top,
       maxLines: null,
       // minLines: null,
