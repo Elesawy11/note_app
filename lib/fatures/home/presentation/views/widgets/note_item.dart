@@ -8,7 +8,8 @@ import '../../../../../core/utils/font_styles.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
-    super.key, required this.note,
+    super.key,
+    required this.note,
   });
   final NoteModel note;
 
@@ -23,7 +24,6 @@ class NoteItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          // color: Color(noteModel.color),
           color: Color(note.color ?? colorsList[0].value),
         ),
         child: Column(

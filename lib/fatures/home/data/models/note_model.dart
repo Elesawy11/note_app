@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'note_model.g.dart';
@@ -6,7 +7,7 @@ part 'note_model.g.dart';
 class NoteModel {
   final String title;
   final String? content;
-  final int? color;
+  int? color = Colors.green.value;
   final String id;
 
   NoteModel({required this.title, this.content, this.color, required this.id});

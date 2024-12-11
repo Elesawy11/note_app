@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/constatn.dart';
 import 'package:note_app/fatures/home/data/models/note_model.dart';
-import 'package:note_app/fatures/home/presentation/views/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:note_app/fatures/home/presentation/views/cubits/update_note_cubit/update_note_cubit.dart';
 
 import 'color_item.dart';
 
-class ColorListView extends StatefulWidget {
-  const ColorListView({
+class EditColorListView extends StatefulWidget {
+  const EditColorListView({
     super.key,
     this.onTap,
     required this.cubit,
-    this.note,
+    required this.note,
   });
   final void Function()? onTap;
-  final AddNoteCubit cubit;
-  final NoteModel? note;
+  final UpdateNoteCubit cubit;
+  final NoteModel note;
   @override
-  State<ColorListView> createState() => _ColorListViewState();
+  State<EditColorListView> createState() => _EditColorListViewState();
 }
 
-class _ColorListViewState extends State<ColorListView> {
+class _EditColorListViewState extends State<EditColorListView> {
   int currentIndex = 0;
 
   @override
@@ -36,10 +36,7 @@ class _ColorListViewState extends State<ColorListView> {
             child: GestureDetector(
               onTap: () {
                 currentIndex = index;
-
-                (widget.note != null)
-                    ? widget.note!.color = colorsList[index].value
-                    : widget.cubit.color = colorsList[index].value;
+                widget.note.color = colorsList[index].value;
 
                 setState(() {});
               },
