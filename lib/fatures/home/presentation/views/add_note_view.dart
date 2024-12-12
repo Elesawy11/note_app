@@ -5,7 +5,6 @@ import 'package:note_app/core/DI/service_locator.dart';
 import 'package:note_app/core/helpers/custom_snack_bar.dart';
 import 'package:note_app/core/utils/spacere.dart';
 import 'package:note_app/fatures/home/presentation/views/cubits/add_note_cubit/add_note_cubit.dart';
-import 'package:note_app/fatures/home/presentation/views/home_view.dart';
 import 'package:note_app/fatures/home/presentation/views/widgets/color_list_view.dart';
 import 'package:note_app/fatures/home/presentation/views/widgets/custom_text_form_field.dart';
 
@@ -29,12 +28,14 @@ class AddNoteView extends StatelessWidget {
           child: BlocConsumer<AddNoteCubit, AddNoteState>(
             listener: (context, state) {
               if (state is AddNoteSuccess) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeView(),
-                  ),
-                );
+                Navigator.pop(context);
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const HomeView(),
+                //   ),
+                // );
+                // cubit.close();
               } else if (state is AddNoteFailure) {
                 customSnackBar(context, state.errMessage);
               }

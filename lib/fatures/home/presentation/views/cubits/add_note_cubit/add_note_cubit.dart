@@ -25,9 +25,18 @@ class AddNoteCubit extends Cubit<AddNoteState> {
           .then((value) => notes.doc(value.id).update({'id': value.id}))
           .catchError((error) => print("Failed to add user: $error"));
       emit(AddNoteSuccess());
+      // await close();
     } catch (e) {
       emit(AddNoteFailure(e.toString()));
       // print(e.toString());
     }
+  }
+
+  @override
+  Future<void> close() {
+    titleController.dispose();
+    contentController.dispose();
+
+    return super.close();
   }
 }

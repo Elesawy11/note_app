@@ -16,7 +16,7 @@ class MyBlocObserver extends BlocObserver {
 
   @override
   void onClose(BlocBase bloc) {
-    debugPrint('create ${bloc.toString()}');
+    debugPrint('close ${bloc.toString()}');
     super.onClose(bloc);
   }
 

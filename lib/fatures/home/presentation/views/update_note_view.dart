@@ -29,9 +29,6 @@ class UpdateNoteView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: BlocConsumer<UpdateNoteCubit, UpdateNoteState>(
             listener: (context, state) {
-              cubit.titleController.text = note.title;
-              cubit.contentController.text =
-                  note.content ?? cubit.contentController.text;
               if (state is UpdateNoteSuccess) {
                 Navigator.pushReplacement(
                   context,

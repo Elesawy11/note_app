@@ -13,8 +13,7 @@ class UpdateNoteCubit extends Cubit<UpdateNoteState> {
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
-  // int color = Colors.green.value;
-  // final NoteModel note;
+
   Future<void> updateNote({required NoteModel note}) async {
     emit(UpdateNoteLoading());
     try {
@@ -25,14 +24,22 @@ class UpdateNoteCubit extends Cubit<UpdateNoteState> {
             content: contentController.text.isEmpty
                 ? note.content
                 : contentController.text,
-                color: note.color,
+            color: note.color,
             id: note.id,
           ).toJson());
 
       emit(UpdateNoteSuccess());
+      // await close();
     } catch (e) {
       emit(UpdateNoteFailure(e.toString()));
       // print(e.toString());
     }
+  }
+
+  @override
+  Future<void> close() {
+    titleController.dispose();
+    contentController.dispose();
+    return super.close();
   }
 }
