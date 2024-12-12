@@ -6,7 +6,7 @@ import 'package:note_app/core/utils/spacere.dart';
 import 'package:note_app/fatures/home/presentation/views/add_note_view.dart';
 import 'package:note_app/fatures/home/presentation/views/cubits/fetch_note_cubit/fech_note_cubit.dart';
 import 'widgets/custom_note_grid_view.dart';
-import 'widgets/custom_text_form_field.dart';
+import 'widgets/custom_search_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -32,21 +32,11 @@ class HomeView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Column(
               children: [
-                CustomTextFormField(
-                  suffixIcon: const Icon(Icons.person_outline),
-                  prefixIcon: const Icon(
-                    Icons.search_outlined,
-                  ),
-                  hintText: 'Search note',
-                  onChanged: (value) =>
-                      cubit.fetchNotes(isEqualTo: value.isEmpty ? null : value),
-                ),
+                CustomSearchWidget(cubit: cubit),
                 verticalSpace(24),
-
                 const Expanded(
                   child: CustomNoteGridView(),
                 ),
-                // NoteItem(),
               ],
             ),
           ),

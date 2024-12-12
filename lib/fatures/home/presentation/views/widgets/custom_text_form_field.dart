@@ -10,7 +10,10 @@ class CustomTextFormField extends StatelessWidget {
     this.expands,
     required this.hintText,
     this.maxLines,
-    this.prefixIcon, this.suffixIcon, this.controller,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.controller,
+    this.onTap, this.borderRadius,
   });
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
@@ -20,10 +23,13 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
+  final void Function()? onTap;
+  final BorderRadius? borderRadius;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller:controller ,
+      onTap: onTap,
+      controller: controller,
       textAlignVertical: TextAlignVertical.top,
       maxLines: null,
       // minLines: null,
@@ -35,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
         hintText: hintText,
         hintStyle: FontStyles.font14Regular,
         prefixIcon: prefixIcon,
-        suffixIcon:suffixIcon ,
+        suffixIcon: suffixIcon,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         focusedBorder: outLineBorder(),
         enabledBorder: outLineBorder(),
@@ -52,7 +58,7 @@ class CustomTextFormField extends StatelessWidget {
         color: Colors.white,
         width: 1.3,
       ),
-      borderRadius: BorderRadius.circular(24.0.r),
+      borderRadius: borderRadius ?? BorderRadius.circular(24.0.r),
     );
   }
 }
